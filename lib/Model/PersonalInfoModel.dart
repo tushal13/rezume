@@ -25,4 +25,8 @@ class PerSonalInfoModel {
     this.urls,
     this.ptofileimage,
   );
+
+  PerSonalInfoModel.init() {
+    print('Personalmodal initilize');
+  }
 }

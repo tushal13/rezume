@@ -2,6 +2,7 @@ import 'package:flutter/Material.dart';
 import 'package:rezume/Utility/AppStyle.dart';
 
 class CustomeTextField extends StatelessWidget {
+
   String? title;
   TextEditingController? controller;
   String? Function(String?)? validator;
@@ -33,7 +34,7 @@ class CustomeTextField extends StatelessWidget {
             validator: validator,
             maxLines: maxline,
             textInputAction: TextInputAction.next,
-            keyboardType: keyboardType ?? TextInputType.none,
+            keyboardType: keyboardType ?? TextInputType.name,
             decoration: InputDecoration(
               border: isbordershow ?? false
                   ? OutlineInputBorder(

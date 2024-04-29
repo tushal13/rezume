@@ -40,7 +40,7 @@ dependencies:
   path: any
   sqflite: any
   image_picker: any
-  google_fonts: ^5.1.App0
+  google_fonts: ^5.1.0
 
 
 dev_dependencies:
