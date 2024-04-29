@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:rezume/Controller/PersonalController.dart';
-import 'package:rezume/Controller/ResumeController.dart';
 import 'package:rezume/Model/UrlModel.dart';
 import 'package:rezume/Utility/AppStyle.dart';
 import 'package:rezume/Views/Component/CustomeTextfield.dart';
+import 'package:rezume/Views/Screens/OtherInfoPage.dart';
 import 'package:rezume/Views/Screens/ResumePage.dart';
 
 import '../../Model/PersonalInfoModel.dart';
@@ -222,23 +221,25 @@ class ProfileInfoPage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Provider.of<ResumeController>(context, listen: false)
-                        .personalinfo(PerSonalInfoModel(
-                            0,
-                            firstnamecontroller.text,
-                            lastnamecontroller.text,
-                            aboutmecontroller.text,
-                            emailcontroller.text,
-                            jobcontroller.text,
-                            addresscontroller.text,
-                            aboutmecontroller.text,
-                            pro.urls,
-                            pro.image));
-
-                    Logger().i(
-                        Provider.of<ResumeController>(context, listen: false)
-                            .perSonalInfoModel
-                            .urls);
+                    // Provider.of<ResumeController>(context, listen: false)
+                    //     .personalinfo(PerSonalInfoModel(
+                    //         0,
+                    //         firstnamecontroller.text,
+                    //         lastnamecontroller.text,
+                    //         aboutmecontroller.text,
+                    //         emailcontroller.text,
+                    //         jobcontroller.text,
+                    //         addresscontroller.text,
+                    //         aboutmecontroller.text,
+                    //         pro.urls,
+                    //         pro.image));
+                    //
+                    // Logger().i(
+                    //     Provider.of<ResumeController>(context, listen: false)
+                    //         .perSonalInfoModel
+                    //         .urls);
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => OtherInfoPage()));
                   },
                   child: Container(
                     alignment: Alignment.center,

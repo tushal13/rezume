@@ -7,6 +7,7 @@ import '../Model/UrlModel.dart';
 
 class PersonalIncfoController extends ChangeNotifier {
   ImagePicker imagePicker = ImagePicker();
+
   List<UrlModel> urls = [];
   Logger l = Logger();
   Uint8List image = Uint8List(0);
