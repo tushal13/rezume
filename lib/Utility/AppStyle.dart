@@ -10,4 +10,8 @@ class AppStyle {
       fontWeight: FontWeight.w600, fontSize: 16, color: Colors.grey.shade500);
   static TextStyle btnstyle = GoogleFonts.roboto(
       fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white);
+  static TextStyle resumheadingstyle = GoogleFonts.lato(
+      fontWeight: FontWeight.bold, fontSize: 14, letterSpacing: 0.5);
+  static TextStyle resumsubtitle = GoogleFonts.lato(
+      fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.75);
 }

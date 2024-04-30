@@ -172,6 +172,7 @@ class ProfileInfoPage extends StatelessWidget {
                       CustomeTextField(
                           title: "Phone No",
                           controller: phonocontroller,
+                          keyboardType: TextInputType.number,
                           validator: (v) {
                             if (v!.isEmpty) {
                               return 'Enter Phone No First';
@@ -234,7 +235,7 @@ class ProfileInfoPage extends StatelessWidget {
                             emailcontroller.text,
                             jobcontroller.text,
                             addresscontroller.text,
-                            aboutmecontroller.text,
+                            phonocontroller.text,
                             pro.urls,
                             pro.image));
                     Navigator.of(context).push(MaterialPageRoute(
