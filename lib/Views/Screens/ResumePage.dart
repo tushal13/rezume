@@ -81,9 +81,9 @@ class ResumePage extends StatelessWidget {
                             ...List.generate(
                               res.perSonalInfoModel.urls!.length,
                               (index) => GestureDetector(
-                                onTap: () {
-                                  launchUrl(Uri.parse(
-                                      res.perSonalInfoModel.urls?[index].url ??
+                                onTap: () async {
+                                  await launchUrl(Uri.parse(
+                                      res.perSonalInfoModel.urls![index].url ??
                                           ''));
                                 },
                                 child: Row(
@@ -98,12 +98,13 @@ class ResumePage extends StatelessWidget {
                                       width: 5,
                                     ),
                                     Text(
-                                      res.perSonalInfoModel.urls?[index]
+                                      res.perSonalInfoModel.urls![index]
                                               .title ??
                                           '',
                                       style: GoogleFonts.lato(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w600,
+                                          decoration: TextDecoration.underline,
                                           color: Colors.white),
                                     ),
                                     const SizedBox(
@@ -340,7 +341,7 @@ Widget EducationTile(String? standard, String per, String school,
           '${standard ?? ''} (${per}%)',
           style: AppStyle.resumsubtitle.copyWith(
             fontSize: 14,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w800,
           ),
         ),
         Text('${school} '),
@@ -357,14 +358,19 @@ Widget ProjectTile(String? title, String? url, String? des) {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          '${title}',
-          overflow: TextOverflow.clip,
-          style: AppStyle.resumsubtitle.copyWith(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              decoration:
-                  url != '' ? TextDecoration.underline : TextDecoration.none),
+        GestureDetector(
+          onTap: () async {
+            await launchUrl(Uri.parse(url ?? ''));
+          },
+          child: Text(
+            '${title}',
+            overflow: TextOverflow.clip,
+            style: AppStyle.resumsubtitle.copyWith(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                decoration:
+                    url != '' ? TextDecoration.underline : TextDecoration.none),
+          ),
         ),
         Text(
           des ?? '',

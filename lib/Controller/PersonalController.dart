@@ -52,7 +52,9 @@ class PersonalIncfoController extends ChangeNotifier {
     for (int i = 0; i < urltitlecontroller.length; i++) {
       String title = urltitlecontroller[i].text;
       String url = urlcontroller[i].text;
-      if (title.isNotEmpty && url.isNotEmpty) urls.add(UrlModel(title, url));
+      if (title.isNotEmpty && url.isNotEmpty) {
+        urls.add(UrlModel(title, url));
+      }
     }
   }
 

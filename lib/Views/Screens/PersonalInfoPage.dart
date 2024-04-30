@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:rezume/Controller/PersonalController.dart';
 import 'package:rezume/Utility/AppStyle.dart';
 import 'package:rezume/Views/Component/CustomeTextfield.dart';
-import 'package:rezume/Views/Screens/OtherInfoPage.dart';
 
 import '../../Controller/ResumeController.dart';
 import '../../Model/PersonalInfoModel.dart';
+import 'OtherInfoPage.dart';
 
 class ProfileInfoPage extends StatelessWidget {
   ProfileInfoPage({super.key});
@@ -27,6 +28,7 @@ class ProfileInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<PersonalIncfoController>().initForUrls();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -224,24 +226,23 @@ class ProfileInfoPage extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     if (formkay.currentState!.validate()) {
+                      pro.addurl();
+                      Provider.of<ResumeController>(context, listen: false)
+                          .setPersonalinfo(PerSonalInfoModel(
+                              0,
+                              firstnamecontroller.text,
+                              lastnamecontroller.text,
+                              aboutmecontroller.text,
+                              emailcontroller.text,
+                              jobcontroller.text,
+                              addresscontroller.text,
+                              phonocontroller.text,
+                              pro.urls,
+                              pro.image));
+                      Logger().t(pro.urls.length);
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => OtherInfoPage()));
                     }
-                    pro.addurl();
-                    Provider.of<ResumeController>(context, listen: false)
-                        .setPersonalinfo(PerSonalInfoModel(
-                            0,
-                            firstnamecontroller.text,
-                            lastnamecontroller.text,
-                            aboutmecontroller.text,
-                            emailcontroller.text,
-                            jobcontroller.text,
-                            addresscontroller.text,
-                            phonocontroller.text,
-                            pro.urls,
-                            pro.image));
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => OtherInfoPage()));
                   },
                   child: Container(
                     alignment: Alignment.center,
