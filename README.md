@@ -28,9 +28,9 @@ Welcome to Rezume, your ultimate companion in shaping your professional journey!
 
 🎨 **Customization:** Choose from a range of professionally designed resume templates to create a unique and visually appealing resume.
 
-## Screenshots
+## Video
 
-
+https://github.com/tushal13/rezume/assets/113960162/c7c58eec-ddbe-47e6-aa1a-a62a6d65dc7a
 
 ## Directory Structure 📂
 
