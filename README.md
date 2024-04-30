@@ -1,6 +1,10 @@
+<p align="center">
+  <img src="https://github.com/tushal13/rezume/assets/113960162/aa7e8540-b121-4d5e-9f3a-f0d387ae9352" alt="Rezume" />
+</p>
+
+<h1 align="center">Rezume 📄✨</h1>
 
 
-# Rezume 📄✨
 
 "Craft Your Career Journey with Rezume - Your Passport to Professional Success!" 🚀
 
@@ -20,11 +24,13 @@ Welcome to Rezume, your ultimate companion in shaping your professional journey!
 
 🔨 **Projects:** Describe your projects in detail, including titles, descriptions, and relevant URLs, demonstrating your hands-on experience.
 
+🔗 URL Launch Feature: Seamlessly launch project URLs directly from the application for quick access to project resources.
+
 🎨 **Customization:** Choose from a range of professionally designed resume templates to create a unique and visually appealing resume.
 
 ## Screenshots
 
-_Insert captivating screenshots or GIFs showcasing your app's sleek interface and powerful features to entice users._
+
 
 ## Directory Structure 📂
 
