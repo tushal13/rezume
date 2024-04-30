@@ -13,5 +13,7 @@ class AppStyle {
   static TextStyle resumheadingstyle = GoogleFonts.lato(
       fontWeight: FontWeight.bold, fontSize: 14, letterSpacing: 0.5);
   static TextStyle resumsubtitle = GoogleFonts.lato(
-      fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.75);
+      fontSize: 10, fontWeight: FontWeight.w500, letterSpacing: 0.75);
+  static TextStyle appbartitlestyle =
+      GoogleFonts.roboto(fontSize: 20, fontWeight: FontWeight.w600);
 }

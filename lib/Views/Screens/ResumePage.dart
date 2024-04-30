@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:rezume/Controller/ResumeController.dart';
 import 'package:rezume/Utility/AppStyle.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ResumePage extends StatelessWidget {
   const ResumePage({super.key});
@@ -16,7 +17,7 @@ class ResumePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Resume Preview',
-          style: GoogleFonts.roboto(fontSize: 20, fontWeight: FontWeight.w600),
+          style: AppStyle.appbartitlestyle,
         ),
         centerTitle: true,
         leading: Container(),
@@ -79,29 +80,37 @@ class ResumePage extends StatelessWidget {
                           children: [
                             ...List.generate(
                               res.perSonalInfoModel.urls!.length,
-                              (index) => Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  const Icon(
-                                    Icons.circle,
-                                    size: 5,
-                                    color: Colors.white,
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    res.perSonalInfoModel.urls?[index].title ??
-                                        '',
-                                    style: GoogleFonts.lato(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white),
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                ],
+                              (index) => GestureDetector(
+                                onTap: () {
+                                  launchUrl(Uri.parse(
+                                      res.perSonalInfoModel.urls?[index].url ??
+                                          ''));
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    const Icon(
+                                      Icons.circle,
+                                      size: 5,
+                                      color: Colors.white,
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      res.perSonalInfoModel.urls?[index]
+                                              .title ??
+                                          '',
+                                      style: GoogleFonts.lato(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.white),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                  ],
+                                ),
                               ),
                             )
                           ],
@@ -184,7 +193,8 @@ class ResumePage extends StatelessWidget {
                                         const SizedBox(
                                           width: 05,
                                         ),
-                                        Text(res.techskill[index].title ?? ""),
+                                        Text(res.techskill[index].title ?? "",
+                                            style: AppStyle.resumsubtitle),
                                       ],
                                     ),
                                   ))
@@ -196,7 +206,7 @@ class ResumePage extends StatelessWidget {
                       children: [
                         Container(
                           width: 2,
-                          height: MediaQuery.of(context).size.shortestSide,
+                          height: MediaQuery.of(context).size.longestSide,
                           color: Colors.black,
                         ),
                       ],

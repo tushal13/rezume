@@ -6,7 +6,6 @@ import 'package:rezume/Controller/PersonalController.dart';
 import 'package:rezume/Utility/AppStyle.dart';
 import 'package:rezume/Views/Component/CustomeTextfield.dart';
 import 'package:rezume/Views/Screens/OtherInfoPage.dart';
-import 'package:rezume/Views/Screens/ResumePage.dart';
 
 import '../../Controller/ResumeController.dart';
 import '../../Model/PersonalInfoModel.dart';
@@ -28,20 +27,14 @@ class ProfileInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<PersonalIncfoController>().initForUrls();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Personal Info'),
+        title: Text(
+          'Add Personal Info',
+          style: AppStyle.appbartitlestyle,
+        ),
         centerTitle: true,
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => ResumePage()));
-              },
-              icon: Icon(CupertinoIcons.doc_text))
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -60,22 +53,30 @@ class ProfileInfoPage extends StatelessWidget {
                         children: [
                           Stack(
                             children: [
-                              Container(
-                                alignment: Alignment.bottomRight,
-                                height: size.height * 0.1,
-                                width: size.width * 0.26,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: MemoryImage(pro.image),
-                                    fit: BoxFit.cover,
-                                  ),
+                              // Container(
+                              //   alignment: Alignment.bottomRight,
+                              //   height: size.height * 0.1,
+                              //   width: size.width * 0.26,
+                              //
+                              //   decoration: BoxDecoration(
+                              //     color: Colors.white,
+                              //     shape: BoxShape.circle,
+                              //     image: DecorationImage(
+                              //       image: MemoryImage(pro.image),
+                              //       fit: BoxFit.cover,
+                              //     ),
+                              //   ),
+                              // ),
+                              CircleAvatar(
+                                radius: 40,
+                                foregroundImage: MemoryImage(pro.image),
+                                backgroundImage: AssetImage(
+                                  'assets/image/user_image.png',
                                 ),
                               ),
                               Positioned(
                                 top: size.height * 0.06,
-                                left: size.width * 0.16,
+                                left: size.width * 0.125,
                                 bottom: 0,
                                 child: IconButton(
                                   onPressed: () {
@@ -168,11 +169,12 @@ class ProfileInfoPage extends StatelessWidget {
                             return null;
                           },
                           isbordershow: true,
-                          hinttext: 'Enter Your Adsress'),
+                          hinttext: 'Enter Your Address'),
                       CustomeTextField(
                           title: "Phone No",
                           controller: phonocontroller,
                           keyboardType: TextInputType.number,
+                          maxlength: 10,
                           validator: (v) {
                             if (v!.isEmpty) {
                               return 'Enter Phone No First';

@@ -20,7 +20,7 @@ class OtherInfoPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'OtherInfo',
-          style: AppStyle.textfhedingstyle.copyWith(fontSize: 20),
+          style: AppStyle.appbartitlestyle,
         ),
         centerTitle: true,
       ),
