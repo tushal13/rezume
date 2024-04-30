@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:rezume/Controller/PersonalController.dart';
-import 'package:rezume/Model/UrlModel.dart';
 import 'package:rezume/Utility/AppStyle.dart';
 import 'package:rezume/Views/Component/CustomeTextfield.dart';
 import 'package:rezume/Views/Screens/OtherInfoPage.dart';
 import 'package:rezume/Views/Screens/ResumePage.dart';
 
+import '../../Controller/ResumeController.dart';
 import '../../Model/PersonalInfoModel.dart';
 
 class ProfileInfoPage extends StatelessWidget {
@@ -23,13 +24,12 @@ class ProfileInfoPage extends StatelessWidget {
   TextEditingController jobcontroller = TextEditingController();
   TextEditingController addresscontroller = TextEditingController();
   TextEditingController phonocontroller = TextEditingController();
-  TextEditingController urltitlecontroller = TextEditingController();
-  TextEditingController urlcontroller = TextEditingController();
   TextEditingController aboutmecontroller = TextEditingController();
   PerSonalInfoModel perSonalInfoModel = PerSonalInfoModel.init();
 
   @override
   Widget build(BuildContext context) {
+    context.read<PersonalIncfoController>().initForUrls();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -52,6 +52,7 @@ class ProfileInfoPage extends StatelessWidget {
             return Column(
               children: [
                 Form(
+                  key: formkay,
                   child: Column(
                     children: [
                       Row(
@@ -189,57 +190,59 @@ class ProfileInfoPage extends StatelessWidget {
                           ),
                           IconButton(
                             onPressed: () {
-                              pro.addurl(UrlModel(
-                                  urltitlecontroller.text, urlcontroller.text));
-                              urltitlecontroller.clear();
-                              urlcontroller.clear();
+                              pro.addurlfild();
                             },
                             icon: Icon(CupertinoIcons.plus),
                           ),
                         ],
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CustomeTextField(
-                              title: 'Enter url Title',
-                              controller: urltitlecontroller,
-                              hinttext: 'Github',
-                            ),
-                          ),
-                          Expanded(
-                            child: CustomeTextField(
-                              title: 'Enter url ',
-                              controller: urlcontroller,
-                              hinttext: 'https://github.com/',
-                            ),
-                          ),
-                        ],
-                      )
+                      ...List.generate(
+                          pro.urltitlecontroller.length,
+                          (index) => Row(
+                                children: [
+                                  Expanded(
+                                    child: CustomeTextField(
+                                      title: 'Enter url Title',
+                                      controller: pro.urltitlecontroller[index],
+                                      hinttext: 'Github',
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: CustomeTextField(
+                                      title: 'Enter url ',
+                                      controller: pro.urlcontroller[index],
+                                      hinttext: 'https://github.com/',
+                                    ),
+                                  ),
+                                ],
+                              )),
                     ],
                   ),
                 ),
                 GestureDetector(
                   onTap: () {
-                    // Provider.of<ResumeController>(context, listen: false)
-                    //     .personalinfo(PerSonalInfoModel(
-                    //         0,
-                    //         firstnamecontroller.text,
-                    //         lastnamecontroller.text,
-                    //         aboutmecontroller.text,
-                    //         emailcontroller.text,
-                    //         jobcontroller.text,
-                    //         addresscontroller.text,
-                    //         aboutmecontroller.text,
-                    //         pro.urls,
-                    //         pro.image));
-                    //
-                    // Logger().i(
-                    //     Provider.of<ResumeController>(context, listen: false)
-                    //         .perSonalInfoModel
-                    //         .urls);
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => OtherInfoPage()));
+                    if (formkay.currentState!.validate()) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => EducationInfoPage()));
+                    }
+                    pro.addurl();
+                    Provider.of<ResumeController>(context, listen: false)
+                        .personalinfo(PerSonalInfoModel(
+                            0,
+                            firstnamecontroller.text,
+                            lastnamecontroller.text,
+                            aboutmecontroller.text,
+                            emailcontroller.text,
+                            jobcontroller.text,
+                            addresscontroller.text,
+                            aboutmecontroller.text,
+                            pro.urls,
+                            pro.image));
+
+                    Logger().i(
+                        Provider.of<ResumeController>(context, listen: false)
+                            .perSonalInfoModel
+                            .urls);
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -268,7 +271,7 @@ class ProfileInfoPage extends StatelessWidget {
   }
 }
 
-//writing ui and what to do for next page
+//i am removing validation becose its user choice he want to submit ditails or not
 imagepickerbottomsheet(BuildContext context) {
   return showModalBottomSheet(
     context: context,

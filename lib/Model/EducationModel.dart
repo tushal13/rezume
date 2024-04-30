@@ -1,14 +1,16 @@
 class EducationModel {
   int? id;
-  String? std;
-  String? strem;
-  String? duration;
-  String? pr;
+  String? school;
+  String? standard;
+  String? joining;
+  String? ending;
+  String? per;
   EducationModel(
     this.id,
-    this.std,
-    this.strem,
-    this.duration,
-    this.pr,
+    this.school,
+    this.standard,
+    this.joining,
+    this.ending,
+    this.per,
   );
 }

@@ -8,4 +8,6 @@ class AppStyle {
   );
   static TextStyle hintfstyle = GoogleFonts.roboto(
       fontWeight: FontWeight.w600, fontSize: 16, color: Colors.grey.shade500);
+  static TextStyle btnstyle = GoogleFonts.roboto(
+      fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white);
 }
