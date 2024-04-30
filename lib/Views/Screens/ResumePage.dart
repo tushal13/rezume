@@ -39,11 +39,12 @@ class ResumePage extends StatelessWidget {
               decoration: BoxDecoration(color: Colors.grey),
             ),
             Text('Projects'),
-            ...List.generate(res.languages.length,
-                (index) => Text(res.languages[index].title ?? '')),
+            ...List.generate(res.projects.length,
+                (index) => Text(res.projects[index].title ?? '')),
           ],
         );
       }),
     );
   }
 }
+//Todo:creat design minimal
