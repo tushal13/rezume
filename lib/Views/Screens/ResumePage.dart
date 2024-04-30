@@ -13,7 +13,14 @@ class ResumePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(
+          'Resume Preview',
+          style: GoogleFonts.roboto(fontSize: 20, fontWeight: FontWeight.w600),
+        ),
+        centerTitle: true,
+        leading: Container(),
+      ),
       body: Consumer<ResumeController>(builder: (context, res, _) {
         return SingleChildScrollView(
           child: Column(
@@ -21,7 +28,8 @@ class ResumePage extends StatelessWidget {
             children: [
               Container(
                 width: size.width,
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(18),
+                decoration: const BoxDecoration(color: Colors.black87),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -42,9 +50,6 @@ class ResumePage extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        SizedBox(
-                          height: size.height * 0.02,
-                        ),
                         Row(
                           children: [
                             Text(
@@ -54,7 +59,7 @@ class ResumePage extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   color: Colors.white),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                             Text(
@@ -77,12 +82,12 @@ class ResumePage extends StatelessWidget {
                               (index) => Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.circle,
                                     size: 5,
                                     color: Colors.white,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -93,7 +98,7 @@ class ResumePage extends StatelessWidget {
                                         fontWeight: FontWeight.w600,
                                         color: Colors.white),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                 ],
@@ -105,7 +110,6 @@ class ResumePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                decoration: BoxDecoration(color: Colors.grey),
               ),
               SizedBox(
                 height: size.height * 0.01,
@@ -115,20 +119,22 @@ class ResumePage extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(
-                      width: size.width * 0.5,
+                    Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(
-                            'CONTACT',
-                            style: AppStyle.resumheadingstyle,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 2.0),
+                            child: Text(
+                              'CONTACT',
+                              style: AppStyle.resumheadingstyle,
+                            ),
                           ),
-                          ContactTile(
-                              Icons.phone, res.perSonalInfoModel.aboutme),
+                          ContactTile(Icons.phone, res.perSonalInfoModel.phono),
                           ContactTile(Icons.email, res.perSonalInfoModel.email),
                           ContactTile(
                               Icons.pin_drop, res.perSonalInfoModel.address),
@@ -136,58 +142,75 @@ class ResumePage extends StatelessWidget {
                             thickness: 2,
                             color: Colors.black,
                           ),
-                          Text(
-                            'ABOUT ME',
-                            style: AppStyle.resumheadingstyle,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 2.0),
+                            child: Text(
+                              'ABOUT ME',
+                              style: AppStyle.resumheadingstyle,
+                            ),
                           ),
-                          Text(
-                            res.perSonalInfoModel.phono ?? '',
-                            style: AppStyle.resumsubtitle,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              res.perSonalInfoModel.aboutme ?? '',
+                              style: AppStyle.resumsubtitle,
+                            ),
                           ),
                           const Divider(
                             thickness: 2,
                             color: Colors.black,
                           ),
-                          Text(
-                            'TECHNICAL SKILLS',
-                            style: AppStyle.resumheadingstyle,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 2.0),
+                            child: Text(
+                              'TECHNICAL SKILLS',
+                              style: AppStyle.resumheadingstyle,
+                            ),
                           ),
                           ...List.generate(
                               res.techskill.length,
-                              (index) => Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.circle,
-                                        size: 8,
-                                      ),
-                                      SizedBox(
-                                        width: 05,
-                                      ),
-                                      Text(res.techskill[index].title ?? ""),
-                                    ],
+                              (index) => Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        const Icon(
+                                          Icons.circle,
+                                          size: 8,
+                                        ),
+                                        const SizedBox(
+                                          width: 05,
+                                        ),
+                                        Text(res.techskill[index].title ?? ""),
+                                      ],
+                                    ),
                                   ))
                         ],
                       ),
                     ),
-                    Container(
-                      width: 2,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [],
-                      ),
-                      decoration: BoxDecoration(color: Colors.black),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          width: 2,
+                          height: MediaQuery.of(context).size.shortestSide,
+                          color: Colors.black,
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      width: size.width * 0.46,
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('EDUCATION'.toUpperCase(),
-                              style: GoogleFonts.lato(
-                                  fontWeight: FontWeight.bold, fontSize: 18)),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 2.0),
+                            child: Text('EDUCATION'.toUpperCase(),
+                                style: GoogleFonts.lato(
+                                    fontWeight: FontWeight.bold, fontSize: 18)),
+                          ),
                           ...List.generate(
                               res.educatione.length,
                               (index) => EducationTile(
@@ -200,10 +223,13 @@ class ResumePage extends StatelessWidget {
                             thickness: 2,
                             color: Colors.black,
                           ),
-                          Text(
-                            'project work history'.toUpperCase(),
-                            style: GoogleFonts.lato(
-                              fontWeight: FontWeight.bold,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 2.0),
+                            child: Text(
+                              'project work history'.toUpperCase(),
+                              style: GoogleFonts.lato(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                           ...List.generate(
@@ -219,30 +245,37 @@ class ResumePage extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'language'.toUpperCase(),
-                                style: GoogleFonts.lato(
-                                  fontWeight: FontWeight.bold,
+                              Padding(
+                                padding: const EdgeInsets.only(left: 2.0),
+                                child: Text(
+                                  'language'.toUpperCase(),
+                                  style: GoogleFonts.lato(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               ...List.generate(
                                   res.languages.length,
-                                  (index) => Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.circle,
-                                            size: 8,
-                                          ),
-                                          SizedBox(
-                                            width: 05,
-                                          ),
-                                          Text(
-                                              res.languages[index].title ?? ""),
-                                        ],
+                                  (index) => Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            const Icon(
+                                              Icons.circle,
+                                              size: 8,
+                                            ),
+                                            const SizedBox(
+                                              width: 05,
+                                            ),
+                                            Text(res.languages[index].title ??
+                                                ""),
+                                          ],
+                                        ),
                                       ))
                             ],
                           ),
@@ -262,48 +295,54 @@ class ResumePage extends StatelessWidget {
 
 //Todo:creat design minimal
 Widget ContactTile(IconData iconData, String? title) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.start,
-    mainAxisSize: MainAxisSize.min,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Icon(
-        iconData,
-        size: 16,
-      ),
-      SizedBox(
-        width: 5,
-      ),
-      Text(
-        title ?? '',
-        style: AppStyle.resumsubtitle,
-      ),
-    ],
+  return Padding(
+    padding: const EdgeInsets.only(left: 8.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(
+          iconData,
+          size: 16,
+        ),
+        const SizedBox(
+          width: 5,
+        ),
+        Text(
+          title ?? '',
+          style: AppStyle.resumsubtitle,
+        ),
+      ],
+    ),
   );
 }
 
 Widget EducationTile(String? standard, String per, String school,
     String joining, String ending) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-      Text(
-        '${standard ?? ''} (${per}%)',
-        style: AppStyle.resumsubtitle.copyWith(
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
+  return Padding(
+    padding: const EdgeInsets.only(left: 8.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Text(
+          '${standard ?? ''} (${per}%)',
+          style: AppStyle.resumsubtitle.copyWith(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
         ),
-      ),
-      Text('${school} '),
-      Text('${joining} - ${ending}')
-    ],
+        Text('${school} '),
+        Text('${joining} - ${ending}')
+      ],
+    ),
   );
 }
 
 Widget ProjectTile(String? title, String? url, String? des) {
-  return Container(
-    padding: const EdgeInsets.all(4.0),
+  return Padding(
+    padding: const EdgeInsets.only(left: 8.0),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,

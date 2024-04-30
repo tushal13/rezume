@@ -19,7 +19,7 @@ class OtherInfoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Eductione',
+          'OtherInfo',
           style: AppStyle.textfhedingstyle.copyWith(fontSize: 20),
         ),
         centerTitle: true,
@@ -209,7 +209,7 @@ Widget LanguageAndSkillWidget(BuildContext context) {
                 ),
                 IconButton(
                   onPressed: () {
-                    oth.addlangfield();
+                    oth.addtskillgfield();
                   },
                   icon: Icon(CupertinoIcons.plus),
                 ),
