@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:rezume/Model/EducationModel.dart';
+import 'package:rezume/Model/LanguageModel.dart';
+import 'package:rezume/Model/TechnicalSkillsModel.dart';
+
+import '../Model/ProjectModel.dart';
 
 class OtherInfoController extends ChangeNotifier {
+  //Education input .............. //
   List<TextEditingController> schoolcontroller = [
     TextEditingController(),
     TextEditingController()
@@ -71,7 +76,7 @@ class OtherInfoController extends ChangeNotifier {
     }
   }
 
-  addurlfild() {
+  addEducationfild() {
     schoolcontroller.add(TextEditingController());
     standardcontroller.add(TextEditingController());
     joiningcontroller.add(TextEditingController());
@@ -93,7 +98,134 @@ class OtherInfoController extends ChangeNotifier {
           ending.isNotEmpty &&
           per.isNotEmpty)
         eductions
-            .add(EducationModel(0, school, standard, joining, ending, per));
+            .add(EducationModel(i, school, standard, joining, ending, per));
+    }
+  }
+
+  //Language input //
+  List<TextEditingController> languagecontrollers = [
+    TextEditingController(),
+  ];
+  List<LanguageModal> languages = [];
+  initlanguage() {
+    if (languagecontrollers.length > 2) {
+      languagecontrollers.removeWhere((element) => element.text.isEmpty);
+    }
+
+    if (languagecontrollers.isEmpty || languagecontrollers.length < 2) {
+      if (languagecontrollers.length == 1) {
+        languagecontrollers.add(TextEditingController());
+      } else {
+        languagecontrollers
+            .addAll([TextEditingController(), TextEditingController()]);
+      }
+    }
+  }
+
+  addlangfield() {
+    languagecontrollers.add(TextEditingController());
+    notifyListeners();
+  }
+
+  addLanguage() {
+    for (int i = 0; i < languagecontrollers.length; i++) {
+      String language = languagecontrollers[i].text;
+      if (language.isNotEmpty) {
+        languages.add(LanguageModal(i, language));
+      }
+    }
+  }
+
+  //Technical Skill input //
+
+  List<TextEditingController> techskillcontrollers = [
+    TextEditingController(),
+  ];
+  List<TechnicalSkillModel> techSkill = [];
+  inittechskille() {
+    if (techskillcontrollers.length > 2) {
+      techskillcontrollers.removeWhere((element) => element.text.isEmpty);
+    }
+
+    if (techskillcontrollers.isEmpty || techskillcontrollers.length < 2) {
+      if (techskillcontrollers.length == 1) {
+        techskillcontrollers.add(TextEditingController());
+      } else {
+        techskillcontrollers
+            .addAll([TextEditingController(), TextEditingController()]);
+      }
+    }
+  }
+
+  addtskillgfield() {
+    techskillcontrollers.add(TextEditingController());
+    notifyListeners();
+  }
+
+  addTechSkill() {
+    for (int i = 0; i < techskillcontrollers.length; i++) {
+      String language = techskillcontrollers[i].text;
+      if (language.isNotEmpty) {
+        techSkill.add(TechnicalSkillModel(i, language));
+      }
+    }
+  }
+
+  //ADD Project input//
+
+  List<TextEditingController> projecttitlecontrollers = [
+    TextEditingController()
+  ];
+  List<TextEditingController> projecturlcontrollers = [TextEditingController()];
+  List<TextEditingController> projectdescontrollers = [TextEditingController()];
+  List<ProjectModel> projects = [];
+  initForProjects() {
+    if (projecttitlecontrollers.length > 2 &&
+        projecturlcontrollers.length > 2 &&
+        projectdescontrollers.length > 2) {
+      projecttitlecontrollers.removeWhere((element) => element.text.isEmpty);
+      projecturlcontrollers.removeWhere((element) => element.text.isEmpty);
+      projectdescontrollers.removeWhere((element) => element.text.isEmpty);
+    }
+    if (projecttitlecontrollers.isEmpty &&
+            projecturlcontrollers.isEmpty &&
+            projectdescontrollers.isEmpty ||
+        projecttitlecontrollers.length < 2 &&
+            projecturlcontrollers.length < 2 &&
+            projectdescontrollers.length < 2) {
+      if (projecttitlecontrollers.length == 1 &&
+          projecturlcontrollers.length == 1 &&
+          projectdescontrollers.length == 1) {
+        projecttitlecontrollers.add(TextEditingController());
+        projecturlcontrollers.add(TextEditingController());
+        projectdescontrollers.add(TextEditingController());
+      } else {
+        projecttitlecontrollers
+            .addAll([TextEditingController(), TextEditingController()]);
+        projecturlcontrollers
+            .addAll([TextEditingController(), TextEditingController()]);
+        projectdescontrollers
+            .addAll([TextEditingController(), TextEditingController()]);
+      }
+    }
+  }
+
+  addprojectfild() {
+    projecttitlecontrollers.add(TextEditingController());
+    projecturlcontrollers.add(TextEditingController());
+    projectdescontrollers.add(TextEditingController());
+    notifyListeners();
+  }
+
+  addProject() {
+    for (int i = 0; i < projecttitlecontrollers.length; i++) {
+      String projecttitle = projecttitlecontrollers[i].text;
+      String projecturl = projecturlcontrollers[i].text;
+      String projectdes = projectdescontrollers[i].text;
+      if (projecttitle.isNotEmpty &&
+          projecturl.isNotEmpty &&
+          projectdes.isNotEmpty)
+        projects.add(ProjectModel(i, projecttitle, projecturl, projectdes));
     }
   }
 }

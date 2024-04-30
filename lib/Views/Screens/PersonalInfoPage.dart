@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:rezume/Controller/PersonalController.dart';
 import 'package:rezume/Utility/AppStyle.dart';
@@ -223,11 +222,11 @@ class ProfileInfoPage extends StatelessWidget {
                   onTap: () {
                     if (formkay.currentState!.validate()) {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => EducationInfoPage()));
+                          builder: (context) => OtherInfoPage()));
                     }
                     pro.addurl();
                     Provider.of<ResumeController>(context, listen: false)
-                        .personalinfo(PerSonalInfoModel(
+                        .setPersonalinfo(PerSonalInfoModel(
                             0,
                             firstnamecontroller.text,
                             lastnamecontroller.text,
@@ -238,11 +237,8 @@ class ProfileInfoPage extends StatelessWidget {
                             aboutmecontroller.text,
                             pro.urls,
                             pro.image));
-
-                    Logger().i(
-                        Provider.of<ResumeController>(context, listen: false)
-                            .perSonalInfoModel
-                            .urls);
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => OtherInfoPage()));
                   },
                   child: Container(
                     alignment: Alignment.center,

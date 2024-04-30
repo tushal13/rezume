@@ -61,7 +61,6 @@ class PersonalIncfoController extends ChangeNotifier {
     if (pickimage != null) {
       image = await pickimage.readAsBytes();
     }
-    l.t(image);
     notifyListeners();
   }
 
@@ -70,7 +69,6 @@ class PersonalIncfoController extends ChangeNotifier {
     if (pickimage != null) {
       image = await pickimage.readAsBytes();
     }
-    l.t(image);
     notifyListeners();
   }
 }

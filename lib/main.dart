@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rezume/Controller/OthrInfoController.dart';
 import 'package:rezume/Controller/ResumeController.dart';
-import 'package:rezume/Views/Screens/OtherInfoPage.dart';
 
+import 'Controller/EasyStepperController.dart';
 import 'Controller/PersonalController.dart';
+import 'Views/Screens/PersonalInfoPage.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => PersonalIncfoController()),
     ChangeNotifierProvider(create: (context) => ResumeController()),
     ChangeNotifierProvider(create: (context) => OtherInfoController()),
+    ChangeNotifierProvider(create: (context) => EasySteperController()),
   ], child: MyApp()));
 }
 
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: EducationInfoPage(),
+      home: ProfileInfoPage(),
     );
   }
 }

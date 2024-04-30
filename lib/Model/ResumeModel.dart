@@ -9,16 +9,15 @@ class ResumeModel {
   PerSonalInfoModel? perSonalInfoModel;
   List<EducationModel>? educationModel;
   List<LanguageModal>? languageModal;
-  List<ProjectModel>? projectModel;
   List<TechnicalSkillModel>? technicalSkillModel;
-  List<EducationModel>? certificatecourses;
+  List<ProjectModel>? projectModel;
 
   ResumeModel(
-      this.id,
-      this.perSonalInfoModel,
-      this.educationModel,
-      this.languageModal,
-      this.projectModel,
-      this.technicalSkillModel,
-      this.certificatecourses);
+    this.id,
+    this.perSonalInfoModel,
+    this.educationModel,
+    this.languageModal,
+    this.technicalSkillModel,
+    this.projectModel,
+  );
 }

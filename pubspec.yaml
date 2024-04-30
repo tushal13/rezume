@@ -41,7 +41,7 @@ dependencies:
   sqflite: any
   image_picker: any
   google_fonts: ^5.1.0
-
+  easy_stepper: ^0.8.4
 
 dev_dependencies:
   flutter_test:
